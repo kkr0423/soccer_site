@@ -12,5 +12,14 @@
 */
 Route::get('/','PageController@top');
 Route::get('/headline','PageController@headline');
-Route::get('/game','PageController@getGame');
-Route::post('/game','PageController@postGame');
+Route::group(['middleware' => 'auth'], function () {
+    // 認証処理後に表示させたいページ
+    Route::get('/game','PageController@getGame');
+    Route::post('/game','PageController@postGame');
+    Route::delete('/game','PageController@deleteGame');
+
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

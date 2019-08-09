@@ -23,6 +23,7 @@ class Game extends Migration
             $table->integer('home_score');
             $table->integer('away_score');
             $table->string('away_team');
+            $table->text('image_path')->nullable(true);
             $table->timestamps();
         });
     }

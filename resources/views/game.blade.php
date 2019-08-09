@@ -6,11 +6,11 @@
 
 <div class="container" style="margin-top:30px">
   <div class="row">
-    <div class="col-lg-9">
+    <div class="col-lg-12">
         
-       <h1>休日</h1>
+       <h1>試合結果入力</h1>
     <!-- 入力フォーム -->
-    <form method="POST" action="/game"> 
+    <form method="POST" action="/game" enctype="multipart/form-data" > 
     {{csrf_field()}}
     
     日付: <input type="text" name="game_date"> [YYYY/MM/DD]
@@ -20,7 +20,7 @@
     <br>ホームスコア: <input type="text" name="home_score"> 
     <br>アウェイスコア: <input type="text" name="away_score"> 
     <br>アウェイチーム: <input type="text" name="away_team"> 
-
+    <input name="image" type="file">
     <input type="submit"> 
     </form> 
     <!-- 試合一覧表示 -->
@@ -43,6 +43,17 @@
         <td>{{$val->home_score}}</td>
         <td>{{$val->away_score}}</td>
         <td>{{$val->away_team}}</td>
+        <td>
+          @if ($val->image_path)
+          <img src="{{ $val->image_path }}"/>
+          @endif
+        </td>
+        <td><form action="/game" method="post">
+            <input type="hidden" name="id" value="{{$val->id}}">
+            {{ method_field('delete') }}
+            {{csrf_field()}} 
+            <button class="btn btn-default" type="submit">Delete</button>
+        </form></td>
     </tr>
     @endforeach
     </table>

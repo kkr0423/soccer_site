@@ -12,9 +12,7 @@
       <li class="nav-item">
         <a class="nav-link" href="{{ url('/headline') }}">試合速報</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">日程・結果</a>
-      </li>
+      
       <li class="nav-item">
         <a class="nav-link" href="{{ url('/game') }}">試合結果入力</a>
       </li>    
